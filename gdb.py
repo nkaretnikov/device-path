@@ -24,9 +24,9 @@ class AddSymbols(gdb.Command):
             return int(line.strip().split()[4], 16)
 
         for line in str.split('\n'):
-            if '.text' in line:
+            if ' .text' in line:
                 text = sec_addr(line)
-            elif '.data' in line:
+            elif ' .data' in line:
                 data = sec_addr(line)
 
         if not text:
