@@ -1,0 +1,27 @@
+[Defines]
+  INF_VERSION    = 0x00010005
+  BASE_NAME      = DevicePath
+  FILE_GUID      = 6eeb4913-14c4-4a8e-91b2-ac756a886c50
+  MODULE_TYPE    = UEFI_APPLICATION
+  VERSION_STRING = 1.0
+  ENTRY_POINT    = UefiMain
+
+[Sources]
+  DevicePath.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  DevicePathLib
+  MemoryAllocationLib
+  UefiApplicationEntryPoint
+  # gBS
+  UefiBootServicesTableLib
+  UefiLib
+
+[Protocols]
+  gEfiBlockIoProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiLoadedImageProtocolGuid

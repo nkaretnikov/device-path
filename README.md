@@ -1,5 +1,10 @@
 A sample UEFI program that prints device paths of removable media.
 
+Note: EDK2 includes an emulator (see edk2/EmulatorPkg/README), but
+I couldn't make it work.  On both Fedora and Ubuntu, it just segfaults when gdb
+starts (tested on UDK2017 and b941c34ef859971e29683ffb57c309e24e6a96be).
+So I'm using the following setup, which also works with gnu-efi.
+
 # Debugging with VMware Fusion
 
 Create a Linux debugger VM and build the project: `make DEBUG=1`.
@@ -26,7 +31,7 @@ Start the application in the debuggee VM:
 ```
 fs0:
 cd EFI\BOOT
-main.efi
+DevicePath.efi
 ```
 
 Add symbols in gdb by specifying the printed image base address.

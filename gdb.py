@@ -1,4 +1,7 @@
 import os
+
+fname = 'DevicePath.debug'
+
 gdb.execute('set disassembly-flavor intel')
 # set pagination off
 # layout split
@@ -15,7 +18,7 @@ class AddSymbols(gdb.Command):
 
     def invoke(self, base, _):
         base = int(base, 16)
-        str = os.popen("readelf --sections main.so").read()
+        str = os.popen("readelf --sections %s" % fname).read()
 
         text = None
         data = None
@@ -41,6 +44,6 @@ class AddSymbols(gdb.Command):
         data += base
 
         gdb.execute(
-            'add-symbol-file main_debug.efi 0x%x -s .data 0x%x' % (text, data))
+            'add-symbol-file %s 0x%x -s .data 0x%x' % (fname, text, data))
 
 AddSymbols()
